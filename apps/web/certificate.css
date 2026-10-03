@@ -1,0 +1,60 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #f5f2fc;
+  color: #302644;
+  margin: 0;
+  padding: 5vw;
+}
+main {
+  max-width: 1000px;
+  margin: auto;
+  border: 2px solid #9983d2;
+  background: #fff;
+  padding: 7vw;
+  text-align: center;
+}
+.brand {
+  font-size: 25px;
+  font-weight: 800;
+  color: #7160db;
+}
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #9683b4;
+  margin: 30px 0;
+}
+h1 {
+  font-size: 38px;
+  font-weight: 500;
+}
+h2 {
+  font-size: 35px;
+  color: #7160db;
+}
+p {
+  line-height: 1.9;
+}
+footer {
+  font-size: 12px;
+  margin-top: 60px;
+  line-height: 1.8;
+  color: #80728e;
+}
+@media print {
+  body {
+    padding: 0;
+    background: white;
+  }
+  main {
+    border: 2px solid #9983d2;
+    padding: 40px;
+  }
+  footer {
+    margin-top: 35px;
+  }
+}
+@page {
+  size: A4 landscape;
+  margin: 15mm;
+}

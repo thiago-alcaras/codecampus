@@ -1,0 +1,46 @@
+name: Quality
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: pip install -r requirements-dev.txt
+      - run: python -m pytest -q
+      - run: python -m compileall -q apps
+      - run: ruff format --check apps tests
+      - run: ruff check --select F821,E9 apps tests
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install -r requirements.txt
+      - run: npm ci --ignore-scripts
+      - run: npm run format:check
+      - run: npx playwright install --with-deps chromium
+      - name: Start isolated demo
+        run: |
+          python -m apps.api.cli seed-demo
+          python -m uvicorn apps.api.main:app --host 127.0.0.1 --port 8000 > /tmp/codecampus-server.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8000/api/health && break || sleep 1; done
+      - run: node tests/e2e.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-screenshots
+          path: test-results
+          retention-days: 7

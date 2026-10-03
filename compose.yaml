@@ -1,0 +1,46 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: codecampus
+      POSTGRES_USER: codecampus
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in a private .env file}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U codecampus -d codecampus"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+  app:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+psycopg://codecampus:${POSTGRES_PASSWORD}@db:5432/codecampus
+      DATA_DIR: /var/lib/codecampus
+      APP_ENV: ${APP_ENV:-development}
+      APP_ORIGIN: ${APP_ORIGIN:-http://127.0.0.1:8000}
+      STORAGE_BACKEND: ${STORAGE_BACKEND:-local}
+      AWS_REGION: ${AWS_REGION:-sa-east-1}
+      S3_BUCKET: ${S3_BUCKET:-}
+      MAX_UPLOAD_MB: ${MAX_UPLOAD_MB:-100}
+      CLAMAV_HOST: ${CLAMAV_HOST:-}
+    ports:
+      - 127.0.0.1:8000:8000
+    volumes:
+      - private-data:/var/lib/codecampus
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+  clamav:
+    image: clamav/clamav:stable
+    profiles: [scanning]
+    volumes:
+      - antivirus-data:/var/lib/clamav
+      - ./infra/clamd.conf:/etc/clamav/clamd.conf:ro
+    restart: unless-stopped
+volumes:
+  postgres-data:
+  private-data:
+  antivirus-data:

@@ -20,6 +20,7 @@ from .db import *
 from .security import *
 from .schemas import *
 from . import storage
+from .learning import learning_overview
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -64,7 +65,7 @@ async def security_headers(request, call_next):
             "X-Frame-Options": "DENY",
             "Referrer-Policy": "no-referrer",
             "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
-            "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-src https://www.youtube-nocookie.com https://player.vimeo.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'",
+            "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; media-src 'self' https://*.amazonaws.com; frame-src https://www.youtube-nocookie.com https://player.vimeo.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'",
         }
     )
     if request.url.path.startswith("/api"):
@@ -349,7 +350,9 @@ def classrooms(user=Depends(principal), db=Depends(db_session)):
 
 @app.post("/api/classrooms", status_code=201)
 def create_class(data: ClassIn, user=Depends(principal), db=Depends(db_session)):
-    admin(user)
+    staff(user)
+    if user.role == "teacher" and data.teacher_id != user.id:
+        raise HTTPException(403, "Crie turmas atribuídas à sua própria conta.")
     if get(db, User, data.teacher_id).role != "teacher":
         raise HTTPException(422, "Selecione um professor.")
     row = Classroom(id=uid(), **data.model_dump())
@@ -363,8 +366,9 @@ def create_class(data: ClassIn, user=Depends(principal), db=Depends(db_session))
 def update_class(
     id: str, data: ClassIn, user=Depends(principal), db=Depends(db_session)
 ):
-    admin(user)
-    row = get(db, Classroom, id)
+    row = access_class(db, user, id, True)
+    if user.role == "teacher" and data.teacher_id != user.id:
+        raise HTTPException(403, "A atribuição de professores exige administração.")
     if get(db, User, data.teacher_id).role != "teacher":
         raise HTTPException(422, "Selecione um professor.")
     for key, value in data.model_dump().items():
@@ -1040,61 +1044,29 @@ def set_attendance(
 @app.get("/api/dashboard")
 def dashboard(user=Depends(principal), db=Depends(db_session)):
     ids = visible_class_ids(db, user)
-    lesson_ids = list(
-        db.scalars(
-            select(Lesson.id)
-            .join(Module)
-            .where(Module.classroom_id.in_(ids), Lesson.published == True)
-        )
-    )
-    student_ids = list(
-        db.scalars(
+    summary = learning_overview(db, user, ids)
+    completed = sum(c["completed"] for c in summary["courses"])
+    total = sum(c["total"] for c in summary["courses"])
+    student_ids = {
+        student
+        for student in db.scalars(
             select(Enrollment.student_id).where(Enrollment.classroom_id.in_(ids))
-        ).unique()
-    )
+        )
+    }
     if user.role == "student":
-        student_ids = [user.id]
-    if user.role == "guardian":
-        student_ids = list(
+        student_ids = {user.id}
+    elif user.role == "guardian":
+        student_ids &= set(
             db.scalars(
                 select(GuardianLink.student_id).where(
                     GuardianLink.guardian_id == user.id
                 )
             )
         )
-    completed = (
-        db.scalar(
-            select(func.count())
-            .select_from(Progress)
-            .where(
-                Progress.lesson_id.in_(lesson_ids), Progress.student_id.in_(student_ids)
-            )
-        )
-        or 0
-    )
-    total = 0
-    # Each student only contributes lessons from their actual enrollments.
-    for student in student_ids:
-        enrolled = list(
-            db.scalars(
-                select(Enrollment.classroom_id).where(
-                    Enrollment.student_id == student, Enrollment.classroom_id.in_(ids)
-                )
-            )
-        )
-        total += (
-            db.scalar(
-                select(func.count())
-                .select_from(Lesson)
-                .join(Module)
-                .where(Module.classroom_id.in_(enrolled), Lesson.published == True)
-            )
-            or 0
-        )
     return {
         "classrooms": len(ids),
         "students": len(student_ids),
-        "lessons": len(lesson_ids),
+        "lessons": sum(c["lessons"] for c in summary["courses"]),
         "completed": completed,
         "progress": round(completed / total * 100) if total else 0,
         "assignments": db.scalar(
@@ -1104,6 +1076,11 @@ def dashboard(user=Depends(principal), db=Depends(db_session)):
         ),
         "storage": storage.STORAGE,
     }
+
+
+@app.get("/api/learning-overview")
+def overview(user=Depends(principal), db=Depends(db_session)):
+    return learning_overview(db, user, visible_class_ids(db, user))
 
 
 @app.get("/api/reports/{id}")
@@ -1163,6 +1140,43 @@ def report(id: str, user=Depends(principal), db=Depends(db_session)):
             }
         )
     return result
+
+
+@app.get("/api/reports/{id}/students/{student_id}")
+def student_learning(
+    id: str, student_id: str, user=Depends(principal), db=Depends(db_session)
+):
+    access_class(db, user, id, True)
+    enrolled = db.scalar(
+        select(Enrollment.id).where(
+            Enrollment.classroom_id == id, Enrollment.student_id == student_id
+        )
+    )
+    if not enrolled:
+        raise HTTPException(404, "Aluno não matriculado nesta turma.")
+    student = get(db, User, student_id)
+    overview = learning_overview(db, student, [id])
+    lessons = list(
+        db.execute(
+            select(Lesson.id, Lesson.title, Module.title, Progress.completed_at)
+            .join(Module, Lesson.module_id == Module.id)
+            .outerjoin(
+                Progress,
+                (Progress.lesson_id == Lesson.id) & (Progress.student_id == student_id),
+            )
+            .where(Module.classroom_id == id, Lesson.published == True)
+            .order_by(Module.position, Lesson.position, Lesson.id)
+        )
+    )
+    return {
+        "name": student.name,
+        "email": student.email,
+        "summary": overview["courses"][0],
+        "lessons": [
+            {"id": lid, "title": title, "module": module, "completed_at": completed}
+            for lid, title, module, completed in lessons
+        ],
+    }
 
 
 @app.get("/api/audit")

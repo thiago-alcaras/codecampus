@@ -48,3 +48,11 @@ FastAPI/SQLAlchemy permitem PostgreSQL em produção e SQLite em desenvolvimento
 Provisionar compute (ECS/App Runner/EC2 ou outro provedor), ingress HTTPS, PostgreSQL gerenciado, rede privada do scanner e gerenciamento de segredos de banco. O CloudFormation entregue cobre storage e role, não provisiona compute nem RDS. Configurar limites e rate limit de borda no ingress; testes usam SQLite e não substituem o teste de concorrência em PostgreSQL.
 
 Próximas extensões justificadas por necessidades reais: SSO/MFA de equipe, convite/redefinição por e-mail, calendário com eventos individuais, banco de questões reutilizável, notificações assíncronas, matrículas em massa, cobrança, backup automatizado e execução de código em sandbox isolado. O sistema atual não executa código arbitrário de alunos e não chama provedores de IA; a trilha de IA é conteúdo pedagógico.
+
+## Projeções de aprendizagem e navegação (Oficina 1.1)
+
+`apps/api/learning.py` deriva a visão por turma e histórico dos registros existentes. O escopo parte das turmas autorizadas, matrículas válidas e, para responsáveis, somente dos alunos vinculados. Aulas em rascunho não contam em progresso ou próximo passo. A equipe recebe dados agregados e acompanhamento individual apenas de suas turmas. Não foi adicionada tabela de analytics ou dados sintéticos para preencher o dashboard.
+
+A UI continua JavaScript nativo, servida pelo FastAPI. A navegação usa hashes dentro de `/campus`; URLs de aulas e projetos funcionam em recarga e no histórico do navegador. As mesmas APIs protegem recursos privados independentemente da rota da interface. A página pública não depende de JavaScript: o seletor de currículo é melhoria progressiva e, sem script, todas as trilhas permanecem legíveis.
+
+Os vídeos externos usam uma lista de players YouTube sem cookies/Vimeo e carregam após ação explícita. Vídeos anexados passam pelo endpoint privado de download; o CSP permite mídia da própria origem e dos endpoints AWS para os redirects S3. Não foi criado bucket público, pipeline de transcodificação ou serviço de vídeo.

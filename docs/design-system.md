@@ -1,4 +1,4 @@
-# CodeCampus Oficina · Design system v1.0
+# CodeCampus Oficina · Design system v1.1
 
 Oficina é a identidade visual do CodeCampus: caderno de laboratório, ferramentas e sinalização. A interface deve transmitir curiosidade e trabalho em equipe, respeitando crianças, adolescentes e professores. Linguagem direta, composição editorial, contornos claros e conteúdo legível. Não usar gradientes decorativos, vidro translúcido, emojis como identidade ou ilustrações genéricas de janelas flutuantes.
 
@@ -79,3 +79,18 @@ Menu móvel fecha por acionador, clique no fundo, Escape ou navegação. Foco de
 Ao adicionar uma tela, reutilize `heading`, `button`, `field`, `area`, `select`, `table` e `formDialog` da aplicação. Use tokens semânticos; não introduza paletas específicas por página. Monte primeiro hierarquia, conteúdo e ações; aplique a identidade em seguida. Preserve as regras de autorização da API.
 
 Publicação da galeria e das capturas usa somente dados fictícios. Conteúdos enviados por professores, arquivos privados e segredos ficam fora do repositório.
+
+## Evolução Oficina 1.1
+
+A identidade e todos os tokens originais foram preservados. O final de `workshop.css` refina os componentes compartilhados e acrescenta os espaços de aprendizagem e ensino. `landing.css` segue os mesmos tokens na apresentação pública; nenhum kit ou família tipográfica externa foi introduzido.
+
+- Destaque de continuidade: uma ação baseada na próxima aula publicada e não concluída; no ensino, uma fila de entregas ou organização das turmas.
+- Progresso: elemento nativo `progress`, valor e texto visíveis; conclusão individual para aluno e agregada apenas entre matrículas válidas para equipe/família. Conclusão é autodeclarada, não tempo assistido.
+- Conteúdo: trilha com módulos; aula em página com roteiro, player sob demanda, anexos, conclusão e navegação; projeto em página com briefing, rubrica, versões e feedback.
+- Autoria: formulários e uploads continuam em diálogo nativo. Após salvar, retornam ao contexto da aula, turma ou projeto.
+- Biblioteca: busca e filtros por status, contagem anunciada e vazio específico para o filtro.
+- Estados: carregamento com texto acessível, erros com ação de tentativa, feedback persistente nas entregas. Sem contadores de notificações não lidas ou métricas inventadas.
+- Navegação: `/` apresenta o produto; `/campus#home` abre a área do perfil; `#course/<id>/<aula-id>` e `#project/<id>` preservam contexto em recarga e histórico do navegador.
+- Vídeo: YouTube sem cookies e Vimeo só carregam após ação explícita; outros links HTTPS abrem externamente. MP4/WebM anexados usam o player nativo e a mesma autorização do download.
+
+Em desktop, o roteiro tem largura contida e a trilha permanece ao lado. Até 1000 px, o conteúdo ganha prioridade e a navegação das aulas passa abaixo. Em celular, botões e formulários se reorganizam sem ocultar conteúdo essencial. Movimento usa 140/220 ms; `prefers-reduced-motion` continua respeitado.

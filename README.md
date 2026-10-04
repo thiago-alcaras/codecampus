@@ -123,6 +123,7 @@ npm ci
 npx playwright install chromium
 node tests/e2e.cjs
 node tests/design-system.cjs
+node tests/product.cjs
 ```
 
 `BASE_URL` muda o servidor; `BROWSER_CHANNEL=msedge` usa Edge instalado. Requer Node 20+. Testa os quatro perfis e larguras 320/390/768/1440. O workflow GitHub Actions está incluído para executar API e navegador em ambientes isolados quando a pasta for a raiz de um repositório. O projeto agora está na raiz do próprio repositório. Docker/PostgreSQL, ClamAV real e AWS precisam de validação no ambiente de destino.
@@ -148,3 +149,23 @@ Versão inicial funcional para desenvolvimento e homologação, com os fluxos li
 ## Landing page das aulas
 
 A rota `/` apresenta as trilhas, método, professor, perguntas frequentes e contato por e-mail. `/campus` mantém a aplicação de alunos, professores e responsáveis. A landing usa as fontes e tokens do design system Oficina; não precisa de JavaScript nem build. Conteúdo em `apps/web/landing.html` e estilos em `apps/web/landing.css`. Horários, formato e valores são consultados diretamente com o professor; não há formulário de matrícula ou processamento de pagamento.
+
+## Experiência Oficina 1.1
+
+A página pública apresenta a experiência de aprendizagem, currículos por trilha, projetos práticos, metodologia, objetivos, professor e contato. Matrícula e disponibilidade são combinadas por e-mail; não há depoimentos, preços ou resultados fictícios.
+
+O campus tem painéis próprios para alunos e equipe. Alunos encontram próxima aula, progresso por turma, histórico de conclusões, projetos pendentes e feedback. Professores encontram turmas, aulas em rascunho, fila de entregas e acompanhamento individual. Podem criar turmas atribuídas à própria conta e editar as suas; atribuição de outro professor, contas e matrículas continuam sob administração.
+
+Aulas e projetos são páginas completas. Autoria, envio de recursos, entrega e avaliação preservam os fluxos privados existentes. Vídeos YouTube/Vimeo carregam sob demanda; links de outros provedores abrem em nova aba. Anexos MP4/WebM podem ser reproduzidos pelo player nativo. Não há transcodificação, DRM, leitura automática de conteúdo de PDFs ou garantia de reprodução de codecs não suportados pelo navegador.
+
+Rotas da interface: `/campus#home`, `#classes`, `#course/<turma-id>`, `#course/<turma-id>/<aula-id>`, `#projects`, `#project/<projeto-id>`, `#history`, `#review`, `#notifications`, `#reports`, `#settings`. Os IDs não conferem autorização: API verifica sessão, perfil e matrícula/atribuição.
+
+`GET /api/learning-overview` deriva progresso e histórico dos dados existentes. `GET /api/reports/<turma-id>/students/<aluno-id>` fornece acompanhamento individual somente à equipe da turma. A evolução não altera o esquema do banco nem exige migração de dados.
+
+Verificação adicional do produto, contra o mesmo banco isolado dos testes de navegador:
+
+```powershell
+node tests/product.cjs
+```
+
+A hospedagem do código no GitHub não coloca a plataforma em produção. HTTPS, banco/backup, identidade AWS, ClamAV e a operação de dados reais continuam dependendo da configuração e homologação descritas nos guias.

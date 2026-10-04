@@ -59,7 +59,7 @@ fs.mkdirSync(output, { recursive: true });
   await page.locator(".module").first().waitFor();
   assert.equal(await page.locator(".module").count(), 8);
   await page.locator('[data-action="lesson"]').first().click();
-  await page.locator("dialog[open]").waitFor();
+  await page.locator(".lesson-reader").waitFor();
   assert(await page.locator(".lesson-body").innerText());
   await page.getByRole("button", { name: "Aula concluída" }).click();
   await page.waitForFunction(() =>
@@ -78,9 +78,9 @@ fs.mkdirSync(output, { recursive: true });
     .fill("Projeto fictício para validar o fluxo.");
   await page.getByRole("button", { name: "Enviar projeto" }).click();
   await page.locator("dialog[open]").waitFor({ state: "hidden" });
-  await page.getByRole("button", { name: "Ver projeto" }).click();
-  assert((await page.locator("dialog").innerText()).includes("versão"));
-  await page.getByRole("button", { name: "Fechar", exact: true }).click();
+  assert(
+    (await page.locator(".submission-card").innerText()).includes("VERSÃO"),
+  );
   await nav("exams");
   await page
     .getByRole("button", { name: /Iniciar prova|Retomar prova/ })
@@ -101,6 +101,7 @@ fs.mkdirSync(output, { recursive: true });
   await page.locator(".result").waitFor();
   await page.getByRole("button", { name: "Fechar", exact: true }).click();
   await page.locator('[data-action="logout"]').click();
+  await page.locator("#login-form").waitFor();
   await login("teacher");
   await nav("projects");
   await page.getByRole("button", { name: "Ver projeto" }).last().click();
@@ -120,7 +121,10 @@ fs.mkdirSync(output, { recursive: true });
   });
   await page.getByRole("button", { name: "Enviar arquivo" }).click();
   await page.locator("dialog[open]").waitFor({ state: "hidden" });
-  await page.getByRole("cell", { name: "demo.txt", exact: true }).waitFor();
+  await page
+    .locator(".resource-link")
+    .filter({ hasText: "demo.txt" })
+    .waitFor();
   await nav("exams");
   await page.getByRole("button", { name: "Criar avaliação" }).click();
   await page
@@ -152,16 +156,21 @@ fs.mkdirSync(output, { recursive: true });
     .getByText("Publicado", { exact: true })
     .waitFor();
   await page.locator('[data-action="logout"]').click();
+  await page.locator("#login-form").waitFor();
   await login("guardian");
   await nav("projects");
   await page.getByRole("button", { name: "Ver projeto" }).click();
-  assert((await page.locator("dialog").innerText()).includes("Bom trabalho"));
-  await page.getByRole("button", { name: "Fechar", exact: true }).click();
+  assert(
+    (await page.locator(".project-workspace").innerText()).includes(
+      "Bom trabalho",
+    ),
+  );
   assert.equal(
     await page.getByRole("button", { name: "Entregar projeto" }).count(),
     0,
   );
   await page.locator('[data-action="logout"]').click();
+  await page.locator("#login-form").waitFor();
   await login("admin");
   await nav("users");
   assert.equal(await page.locator("[data-person]").count(), 4);

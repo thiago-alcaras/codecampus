@@ -81,8 +81,8 @@ fs.mkdirSync("test-results", { recursive: true });
       fullPage: true,
     });
     await page.locator('[data-action="lesson"]').first().click();
-    await page.locator("#dialog[open]").waitFor();
-    await page.screenshot({ path: "test-results/lesson-dialog.png" });
+    await page.locator(".lesson-reader").waitFor();
+    await page.screenshot({ path: "test-results/lesson-workspace.png" });
     await page.keyboard.press("Escape");
     await page.goto(base + "/static/design-system.html");
     await page.evaluate(() => document.fonts.ready);

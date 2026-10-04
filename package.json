@@ -7,6 +7,7 @@
   "scripts": {
     "test:e2e": "node tests/e2e.cjs",
     "test:design": "node tests/design-system.cjs",
+    "test:product": "node tests/product.cjs",
     "format": "prettier --write apps/web tests/*.cjs",
     "format:check": "prettier --check apps/web tests/*.cjs"
   },

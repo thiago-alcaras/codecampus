@@ -12,6 +12,7 @@
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/static/tokens.css" />
     <link rel="stylesheet" href="/static/landing.css" />
+    <script src="/static/landing.js" defer></script>
   </head>
   <body>
     <a class="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -21,7 +22,7 @@
         >CodeCampus<span class="brand-note">APRENDER CONSTRUINDO</span></a
       >
       <nav aria-label="Navegação principal">
-        <a href="#trilhas">As aulas</a><a href="#metodo">Como funciona</a
+        <a href="#trilhas">As trilhas</a><a href="#metodo">Como funciona</a
         ><a class="access" href="/campus"
           >Entrar no campus <span aria-hidden="true">↗</span></a
         >
@@ -37,9 +38,9 @@
             De boas perguntas<br />a <em>grandes ideias.</em>
           </h1>
           <p class="lead">
-            Aprender a programar é descobrir que você pode construir. Aulas para
-            crianças e adolescentes transformarem curiosidade em jogos, sites e
-            projetos de verdade.
+            Do primeiro “e se?” a um projeto que você consegue explicar. Aulas
+            de programação para crianças e adolescentes transformarem
+            curiosidade em jogos, sites e projetos de verdade.
           </p>
           <div class="actions">
             <a class="button primary" href="#trilhas"
@@ -53,53 +54,47 @@
           </p>
         </div>
         <div
-          class="workbench"
-          aria-label="Ilustração de um caderno de projetos de programação"
+          class="workbench learning-board"
+          aria-label="Exemplo ilustrativo de uma jornada no CodeCampus"
         >
           <div class="board-label">
-            <span>OFICINA DE IDEIAS</span><span>01 / EM CONSTRUÇÃO</span>
+            <span>CODECAMPUS / CADERNO DE BORDO</span
+            ><span>APRENDER FAZENDO</span>
           </div>
-          <div class="code-card">
-            <div class="code-top">
-              <span class="window-dots" aria-hidden="true">● ● ●</span
-              ><span>minha-primeira-ideia.js</span>
-            </div>
-            <div class="code-body">
-              <p>
-                <span class="code-muted">01</span>
-                <span class="code-yellow">const</span> ideia = {
-              </p>
-              <p>
-                <span class="code-muted">02</span> &nbsp; curiosidade:
-                <span class="code-green">true</span>,
-              </p>
-              <p>
-                <span class="code-muted">03</span> &nbsp; medoDeErrar:
-                <span class="code-green">false</span>,
-              </p>
-              <p>
-                <span class="code-muted">04</span> &nbsp; proximoPasso:
-                <span class="code-yellow">"criar"</span>
-              </p>
-              <p><span class="code-muted">05</span> };</p>
-              <p class="code-comment">// Toda descoberta começa aqui.</p>
-            </div>
+          <div class="board-course">
+            <span class="eyebrow">ENGENHARIA & IA</span>
+            <h2>Sua ideia.<br />Seu primeiro<br /><em>grande projeto.</em></h2>
+            <span class="board-code" aria-hidden="true">&lt;/&gt;</span>
           </div>
-          <div class="idea-note">
-            <span aria-hidden="true">✳</span
-            ><strong>E se eu<br />construísse isso?</strong
-            ><small>UMA PERGUNTA. MUITAS POSSIBILIDADES.</small>
-          </div>
-          <div class="build-note">
-            <span class="build-icon" aria-hidden="true">↗</span>
+          <div class="board-journey">
             <div>
-              <strong>Projeto em movimento</strong>
-              <p>Experimentar → construir → melhorar</p>
+              <span class="board-step">01</span>
+              <div>
+                <strong>Investigue o problema</strong
+                ><small>Boas perguntas antes do código</small>
+              </div>
+              <span aria-hidden="true">✓</span>
+            </div>
+            <div>
+              <span class="board-step">02</span>
+              <div>
+                <strong>Construa uma solução</strong
+                ><small>Uma versão de cada vez</small>
+              </div>
+              <span aria-hidden="true">→</span>
+            </div>
+            <div>
+              <span class="board-step">03</span>
+              <div>
+                <strong>Aprenda com o feedback</strong
+                ><small>Teste, revise e compartilhe</small>
+              </div>
+              <span aria-hidden="true">↗</span>
             </div>
           </div>
           <div class="board-footer">
-            <span>FEITO COM CURIOSIDADE</span
-            ><span aria-hidden="true">+ + +</span>
+            <span>EXEMPLO DE JORNADA</span
+            ><span>PERGUNTAR. CONSTRUIR. EVOLUIR.</span>
           </div>
         </div>
       </section>
@@ -193,6 +188,492 @@
           </article>
         </div>
       </section>
+
+      <section
+        id="experiencia"
+        class="section wrap experience"
+        aria-labelledby="experiencia-title"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">UM CAMPUS. UMA JORNADA CONTÍNUA.</p>
+            <h2 id="experiencia-title">
+              Da curiosidade<br />à próxima conquista.
+            </h2>
+          </div>
+          <p>
+            Uma aula não termina no último slide. Roteiros, recursos, projetos e
+            feedback ficam conectados para que o aluno saiba como continuar.
+          </p>
+        </div>
+        <div class="experience-grid">
+          <div class="product-preview">
+            <div class="preview-header">
+              <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span
+              ><span>SEU CAMPUS / EXEMPLO ILUSTRATIVO</span
+              ><span class="tag">Oficina</span>
+            </div>
+            <div class="preview-content">
+              <p class="eyebrow">SUA PRÓXIMA DESCOBERTA</p>
+              <h3>Variáveis, decisões<br />e uma ideia em movimento.</h3>
+              <p>Roteiro → desafio → reflexão</p>
+              <div class="preview-path">
+                <span>01 Conceitos</span><span>02 Experimento</span
+                ><span>03 Sua solução</span>
+              </div>
+              <div class="preview-feedback">
+                <span aria-hidden="true">↗</span>
+                <div>
+                  <strong>Feedback que aponta um caminho.</strong>
+                  <p>
+                    Entenda suas escolhas, revise a solução e construa a próxima
+                    versão.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="experience-notes">
+            <article>
+              <span class="eyebrow">01 / CLAREZA</span>
+              <h3>Saiba por onde seguir.</h3>
+              <p>
+                Módulos organizados, próxima aula e progresso visível para
+                manter o aprendizado em movimento.
+              </p>
+            </article>
+            <article>
+              <span class="eyebrow">02 / FOCO</span>
+              <h3>Um espaço para experimentar.</h3>
+              <p>
+                Vídeo, roteiro e anexos reunidos na aula. Os recursos ficam
+                privados para a turma.
+              </p>
+            </article>
+            <article>
+              <span class="eyebrow">03 / EVOLUÇÃO</span>
+              <h3>Sua primeira versão é um começo.</h3>
+              <p>
+                Entregas com histórico, critérios de avaliação e feedback do
+                professor para orientar a revisão.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section
+        id="curriculo"
+        class="curriculum-section section"
+        aria-labelledby="curriculo-title"
+      >
+        <div class="wrap">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">O QUE VAMOS CONSTRUIR JUNTOS</p>
+              <h2 id="curriculo-title">
+                Conteúdo com sequência.<br />Espaço para descobrir.
+              </h2>
+            </div>
+            <p>
+              Estas são as trilhas de referência do campus. O professor adapta
+              os desafios e o ritmo à experiência da turma.
+            </p>
+          </div>
+          <div class="curriculum-switch">
+            <label for="curriculum-select">Explore o currículo</label
+            ><select id="curriculum-select">
+              <option value="0">Exploradores · 8–11 anos</option>
+              <option value="1">Desenvolvimento · 12–14 anos</option>
+              <option value="2">Engenharia & IA · 15–17 anos</option>
+            </select>
+          </div>
+          <section
+            class="curriculum-panel"
+            data-curriculum="0"
+            aria-label="Currículo de Exploradores do código"
+          >
+            <div class="curriculum-intro">
+              <span class="age">8–11 anos</span>
+              <h3>Exploradores do código</h3>
+              <p>3 módulos · 9 aulas de referência</p>
+              <a class="text-link" href="#contato"
+                >Conversar sobre esta trilha ↗</a
+              >
+            </div>
+            <div class="curriculum-modules">
+              <details open>
+                <summary>
+                  <span class="curriculum-number">01</span
+                  ><span
+                    >Pensamento computacional<small
+                      >3 aulas · Sequências, decomposição e padrões através de
+                      brincadeiras.</small
+                    ></span
+                  >
+                </summary>
+                <ol>
+                  <li>Algoritmos fora da tela</li>
+                  <li>Crie uma história interativa</li>
+                  <li>Meu primeiro jogo com blocos</li>
+                </ol>
+              </details>
+              <details>
+                <summary>
+                  <span class="curriculum-number">02</span
+                  ><span
+                    >Criadores de jogos<small
+                      >3 aulas · Eventos, variáveis, condições e colaboração com
+                      Scratch.</small
+                    ></span
+                  >
+                </summary>
+                <ol>
+                  <li>Pontuação e variáveis</li>
+                  <li>Colisões e desafios</li>
+                  <li>Mostra de jogos</li>
+                </ol>
+              </details>
+              <details>
+                <summary>
+                  <span class="curriculum-number">03</span
+                  ><span
+                    >Internet com cuidado<small
+                      >3 aulas · Privacidade, respeito e uso responsável da
+                      tecnologia.</small
+                    ></span
+                  >
+                </summary>
+                <ol>
+                  <li>Dados pessoais e senhas</li>
+                  <li>Cidadania digital</li>
+                  <li>Meu projeto e sua apresentação</li>
+                </ol>
+              </details>
+            </div>
+          </section>
+          <section
+            class="curriculum-panel"
+            data-curriculum="1"
+            aria-label="Currículo de Laboratório de desenvolvimento"
+          >
+            <div class="curriculum-intro">
+              <span class="age">12–14 anos</span>
+              <h3>Laboratório de desenvolvimento</h3>
+              <p>3 módulos · 9 aulas de referência</p>
+              <a class="text-link" href="#contato"
+                >Conversar sobre esta trilha ↗</a
+              >
+            </div>
+            <div class="curriculum-modules">
+              <details open>
+                <summary>
+                  <span class="curriculum-number">01</span
+                  ><span
+                    >Web criativa<small
+                      >3 aulas · Construção de interfaces acessíveis com HTML e
+                      CSS.</small
+                    ></span
+                  >
+                </summary>
+                <ol>
+                  <li>Estrutura de uma página</li>
+                  <li>Layouts responsivos</li>
+                  <li>Acessibilidade na prática</li>
+                </ol>
+              </details>
+              <details>
+                <summary>
+                  <span class="curriculum-number">02</span
+                  ><span
+                    >JavaScript e Python<small
+                      >3 aulas · Lógica, funções, estruturas de dados e
+                      depuração.</small
+                    ></span
+                  >
+                </summary>
+                <ol>
+                  <li>Funções e eventos</li>
+                  <li>Listas e dicionários</li>
+                  <li>Investigue um bug</li>
+                </ol>
+              </details>
+              <details>
+                <summary>
+                  <span class="curriculum-number">03</span
+                  ><span
+                    >Projetos colaborativos<small
+                      >3 aulas · Git, revisão de código e APIs com dados
+                      fictícios.</small
+                    ></span
+                  >
+                </summary>
+                <ol>
+                  <li>Commits que contam histórias</li>
+                  <li>Consuma uma API</li>
+                  <li>Apresente seu produto</li>
+                </ol>
+              </details>
+            </div>
+          </section>
+          <section
+            class="curriculum-panel"
+            data-curriculum="2"
+            aria-label="Currículo de Engenharia &amp; IA · Future Builders"
+          >
+            <div class="curriculum-intro">
+              <span class="age">15–17 anos</span>
+              <h3>Engenharia &amp; IA · Future Builders</h3>
+              <p>8 módulos · 24 aulas de referência</p>
+              <a class="text-link" href="#contato"
+                >Conversar sobre esta trilha ↗</a
+              >
+            </div>
+            <div class="curriculum-modules">
+              <details open>
+                <summary>
+                  <span class="curriculum-number">01</span
+                  ><span
+                    >01 · Trabalho em equipes de produto<small
+                      >3 aulas · Requisitos, histórias, critérios de aceite,
+                      colaboração e comunicação.</small
+                    ></span
+                  >
+                </summary>
+                <ol>
+                  <li>Do problema ao design doc</li>
+                  <li>Git, pull requests e revisão</li>
+                  <li>Planejamento e retrospectiva</li>
+                </ol>
+              </details>
+              <details>
+                <summary>
+                  <span class="curriculum-number">02</span
+                  ><span
+                    >02 · Arquitetura de aplicações<small
+                      >3 aulas · HTTP, APIs, bancos relacionais, transações e
+                      escolhas de arquitetura.</small
+                    ></span
+                  >
+                </summary>
+                <ol>
+                  <li>Modele uma API de biblioteca</li>
+                  <li>SQL e integridade dos dados</li>
+                  <li>Monólitos, filas e limites dos serviços</li>
+                </ol>
+              </details>
+              <details>
+                <summary>
+                  <span class="curriculum-number">03</span
+                  ><span
+                    >03 · Qualidade e segurança<small
+                      >3 aulas · Testes, acessibilidade, autenticação e
+                      privacidade por padrão.</small
+                    ></span
+                  >
+                </summary>
+                <ol>
+                  <li>Testes que protegem o produto</li>
+                  <li>Modelagem de ameaças</li>
+                  <li>Acessibilidade e dados de menores</li>
+                </ol>
+              </details>
+              <details>
+                <summary>
+                  <span class="curriculum-number">04</span
+                  ><span
+                    >04 · Desenvolvimento assistido por IA<small
+                      >3 aulas · Contexto, planejamento, validação e autoria
+                      responsável.</small
+                    ></span
+                  >
+                </summary>
+                <ol>
+                  <li>Prompts com contexto e critérios</li>
+                  <li>Refatore com testes e revisão</li>
+                  <li>Identifique uma resposta incorreta da IA</li>
+                </ol>
+              </details>
+              <details>
+                <summary>
+                  <span class="curriculum-number">05</span
+                  ><span
+                    >05 · Aplicações com IA e RAG<small
+                      >3 aulas · Embeddings, recuperação, fontes, privacidade e
+                      avaliação.</small
+                    ></span
+                  >
+                </summary>
+                <ol>
+                  <li>Busca semântica com dados sintéticos</li>
+                  <li>Respostas com fontes verificáveis</li>
+                  <li>Avalie alucinações e vazamento de dados</li>
+                </ol>
+              </details>
+              <details>
+                <summary>
+                  <span class="curriculum-number">06</span
+                  ><span
+                    >06 · Agentes e ferramentas<small
+                      >3 aulas · Ferramentas com permissões, aprovação humana,
+                      limites e rastreabilidade.</small
+                    ></span
+                  >
+                </summary>
+                <ol>
+                  <li>Construa um agente de suporte simulado</li>
+                  <li>Proteja contra prompt injection</li>
+                  <li>Orçamento, latência e avaliação</li>
+                </ol>
+              </details>
+              <details>
+                <summary>
+                  <span class="curriculum-number">07</span
+                  ><span
+                    >07 · Cloud, DevOps e confiabilidade<small
+                      >3 aulas · Containers, CI, armazenamento privado,
+                      observabilidade e incidentes.</small
+                    ></span
+                  >
+                </summary>
+                <ol>
+                  <li>Pipeline de testes e entrega</li>
+                  <li>S3 privado e identidade na AWS</li>
+                  <li>Simule um incidente e escreva o post-mortem</li>
+                </ol>
+              </details>
+              <details>
+                <summary>
+                  <span class="curriculum-number">08</span
+                  ><span
+                    >08 · Projeto integrador de empresa<small
+                      >3 aulas · Squads constroem um produto com IA usando o
+                      ciclo completo de engenharia.</small
+                    ></span
+                  >
+                </summary>
+                <ol>
+                  <li>Discovery e decisões arquiteturais</li>
+                  <li>Entrega incremental e revisão de segurança</li>
+                  <li>Demo day, documentação e portfólio</li>
+                </ol>
+              </details>
+            </div>
+          </section>
+          <p class="curriculum-note">
+            Faixas etárias são referências pedagógicas. O currículo é uma
+            proposta de aprendizagem, não uma promessa de carreira ou de
+            emprego.
+          </p>
+        </div>
+      </section>
+      <section
+        id="projetos"
+        class="section wrap project-showcase"
+        aria-labelledby="projetos-title"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CONHECIMENTO QUE VIRA ALGUMA COISA</p>
+            <h2 id="projetos-title">Você não só estuda.<br />Você constrói.</h2>
+          </div>
+          <p>
+            Cada trilha conecta os conceitos a um projeto. A proposta é
+            conseguir mostrar o que foi feito e explicar por quê.
+          </p>
+        </div>
+        <div class="project-examples">
+          <article>
+            <div class="project-drawing game-drawing" aria-hidden="true">
+              <span class="drawing-label">EXPLORAÇÃO / 01</span>
+              <div class="game-stage">
+                <span class="game-player">&gt;</span
+                ><span class="game-target">✳</span
+                ><span class="game-floor">_ _ _ _ _ _ _ _</span>
+              </div>
+            </div>
+            <span class="eyebrow">PRIMEIRO PROJETO</span>
+            <h3>Um jogo com suas regras.</h3>
+            <p>
+              Explore eventos e lógica para construir uma experiência interativa
+              com blocos.
+            </p>
+            <span class="project-skills"
+              >Sequências · Eventos · Criatividade</span
+            >
+          </article>
+          <article>
+            <div class="project-drawing web-drawing" aria-hidden="true">
+              <span class="drawing-label">DESENVOLVIMENTO / 02</span>
+              <div class="web-layout">
+                <span>Minha boa ideia.</span><i></i>
+                <div><b></b><b></b><b></b></div>
+              </div>
+            </div>
+            <span class="eyebrow">IDEIA QUE GANHA FORMA</span>
+            <h3>Uma página para sua ideia.</h3>
+            <p>
+              Organize conteúdo, escreva HTML e CSS e pense em quem vai usar a
+              interface.
+            </p>
+            <span class="project-skills"
+              >Web · Acessibilidade · JavaScript</span
+            >
+          </article>
+          <article>
+            <div class="project-drawing api-drawing" aria-hidden="true">
+              <span class="drawing-label">ENGENHARIA / 03</span>
+              <div class="api-map">
+                <span>APP</span><i>→</i><span>API</span><i>→</i><span>SQL</span>
+              </div>
+            </div>
+            <span class="eyebrow">DECISÕES QUE IMPORTAM</span>
+            <h3>Uma API de biblioteca.</h3>
+            <p>
+              Modele os dados, proteja os acessos, teste a solução e documente
+              suas decisões.
+            </p>
+            <span class="project-skills">APIs · Dados · Qualidade</span>
+          </article>
+        </div>
+      </section>
+      <section class="outcomes section" aria-labelledby="outcomes-title">
+        <div class="wrap">
+          <p class="eyebrow">APRENDER PARA CONSEGUIR EXPLICAR</p>
+          <div class="outcome-heading">
+            <h2 id="outcomes-title">
+              Mais do que terminar.<br />Entender o que construiu.
+            </h2>
+            <p>
+              Estas são as capacidades que orientam as atividades do CodeCampus.
+            </p>
+          </div>
+          <div class="outcome-grid">
+            <article>
+              <span>01</span>
+              <h3>Decompor problemas.</h3>
+              <p>
+                Transformar uma ideia em passos pequenos que podem ser
+                investigados.
+              </p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>Construir com autonomia.</h3>
+              <p>
+                Experimentar, buscar contexto e aprender a revisar uma solução.
+              </p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Colaborar com critério.</h3>
+              <p>
+                Explicar decisões, receber feedback e respeitar outras
+                perspectivas.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
       <section
         id="metodo"
         class="method section"
@@ -267,7 +748,7 @@
           ><span>Desenvolvimento · Educação · Criatividade</span>
         </div>
         <div>
-          <p class="eyebrow">03 / TECNOLOGIA TAMBÉM ENSINA</p>
+          <p class="eyebrow">QUEM GUIA A OFICINA</p>
           <h2 id="professor-title">
             Código com propósito.<br />Aprendizado com espaço.
           </h2>
@@ -293,7 +774,7 @@
       </section>
       <section class="section wrap faq" aria-labelledby="faq-title">
         <div>
-          <p class="eyebrow">04 / ANTES DA PRIMEIRA AULA</p>
+          <p class="eyebrow">ANTES DA PRIMEIRA AULA</p>
           <h2 id="faq-title">Boas perguntas<br />começam aqui.</h2>
         </div>
         <div class="questions">

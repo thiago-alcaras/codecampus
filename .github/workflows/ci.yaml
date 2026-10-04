@@ -38,6 +38,8 @@ jobs:
           python -m uvicorn apps.api.main:app --host 127.0.0.1 --port 8000 > /tmp/codecampus-server.log 2>&1 &
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8000/api/health && break || sleep 1; done
       - run: node tests/e2e.cjs
+      - run: node tests/product.cjs
+      - run: node tests/design-system.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

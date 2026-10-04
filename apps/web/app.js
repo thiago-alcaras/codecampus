@@ -102,11 +102,12 @@ const empty = (text) => `<div class="empty">${esc(text)}</div>`;
 const button = (text, action, id = "", secondary = false) =>
   `<button class="button ${secondary ? "secondary" : ""}" data-action="${action}" data-id="${esc(id)}">${esc(text)}</button>`;
 function art() {
-  return `<div class="hero-art" aria-hidden="true"><div class="art-orbit"></div><div class="art-orbit inner"></div><span class="star">✦</span><div class="code-window"><div class="window-dots"><i></i><i></i><i></i></div><pre>const futuro = {<br>  curiosidade: true,<br>  possibilidades: '∞'<br>};<br><br>aprender(futuro);</pre></div><div class="art-bubble">&lt;/&gt;</div></div>`;
+  return `<div class="hero-art" aria-hidden="true"><div class="lab-diagram"><span class="diagram-caption">PROCESSO / 001</span><div class="diagram-flow"><span>?</span><i></i><span>{ }</span><i></i><span>↗</span></div><div class="diagram-labels"><span>PERGUNTAR</span><span>CONSTRUIR</span><span>EVOLUIR</span></div><div class="diagram-footer"><span>IDEIAS EM MOVIMENTO</span><span>CC—LAB</span></div></div></div>`;
 }
+const brandMark = `<span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M16 9 5 20l11 11M24 9l11 11-11 11M23 5l-6 30" stroke="currentColor" stroke-width="3"/></svg></span>`;
 function loginPage() {
   $("#app").innerHTML =
-    `<main class="login"><section class="login-story"><div class="brand"><span class="brand-mark">&lt;/&gt;</span>CodeCampus</div><h1>Grandes ideias.<br>Pequenos começos.<br>Seu próximo passo.</h1><p>Um espaço para explorar a programação, construir com outras pessoas e transformar curiosidade em possibilidades.</p>${art()}</section><section class="login-main"><div class="login-card"><p class="eyebrow">SEU ESPAÇO DE APRENDIZADO</p><h2>Bom ter você aqui.</h2><p class="muted">Entre para continuar sua jornada.</p><form id="login-form"><label>E-mail<input type="email" name="email" required autocomplete="username" placeholder="voce@escola.com"></label><label>Senha<input type="password" name="password" required autocomplete="current-password" minlength="1" maxlength="128" placeholder="Sua senha"></label><p class="form-error" role="alert"></p><button class="button" type="submit">Entrar no campus ${icon("arrow")}</button></form><p class="login-foot">Sua conta é criada pela escola. Para recuperar o acesso, entre em contato com a administração.<br>Materiais e entregas são privados.</p></div></section></main>`;
+    `<main class="login" id="content" tabindex="-1"><section class="login-story"><div class="brand">${brandMark}CodeCampus</div><h1>O mundo se<br>constrói com<br><em>boas perguntas.</em></h1><p>Um lugar para experimentar, escrever código e aprender com o que você constrói. Da primeira descoberta ao primeiro projeto de verdade.</p>${art()}</section><section class="login-main"><div class="login-card"><p class="eyebrow">ACESSO AO CAMPUS / 01</p><h2>Vamos começar.</h2><p class="muted">Alunos, professores e responsáveis: seu trabalho começa aqui.</p><form id="login-form"><label>E-mail<input type="email" name="email" required autocomplete="username" placeholder="voce@escola.com"></label><label>Senha<input type="password" name="password" required autocomplete="current-password" minlength="1" maxlength="128" placeholder="Sua senha"></label><p class="form-error" role="alert"></p><button class="button" type="submit">Entrar no campus ${icon("arrow")}</button></form><p class="login-foot">Sua conta é criada pela escola. Para recuperar o acesso, entre em contato com a administração.<br>Materiais e entregas são privados.</p></div></section></main>`;
   $("#login-form").onsubmit = async (e) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -162,7 +163,7 @@ function shell() {
     ["settings", "Minha conta"],
   ];
   $("#app").innerHTML =
-    `<div class="shell"><aside class="sidebar"><a class="brand" href="#home"><span class="brand-mark">&lt;/&gt;</span><span>CodeCampus<small>APRENDER CONSTRUINDO</small></span></a><div class="nav-label">SEU CAMPUS</div><nav class="nav" aria-label="Menu principal">${nav.map(([key, label]) => `<button data-nav="${key}">${icon(key)}${label}${key === "projects" ? `<span class="badge">${state.assignments.length}</span>` : ""}</button>`).join("")}</nav><div class="side-note"><strong>Seu futuro começa aqui ✦</strong><p>Um projeto de cada vez.<br>Uma descoberta por dia.</p><button class="text-button" data-nav="classes">Explore suas turmas →</button></div><div class="side-bottom nav"><button data-action="logout">${icon("logout")}Sair do campus</button></div></aside><div class="main"><header class="topbar"><button class="icon-button mobile-menu" data-action="menu" aria-label="Abrir menu">${icon("menu")}</button><div class="breadcrumb">Seu campus <span>/</span> <strong id="breadcrumb">Visão geral</strong></div><div class="top-actions"><span class="date">${new Date().toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" })}</span><button class="icon-button" data-nav="announcements" aria-label="Ver avisos">${icon("bell")}</button><div class="profile"><div class="avatar">${esc(
+    `<div class="shell"><aside class="sidebar" id="campus-navigation"><a class="brand" href="#home" data-nav="home">${brandMark}<span>CodeCampus<small>APRENDER CONSTRUINDO</small></span></a><div class="nav-label">SEU CAMPUS</div><nav class="nav" aria-label="Menu principal">${nav.map(([key, label]) => `<button data-nav="${key}">${icon(key)}${label}${key === "projects" ? `<span class="badge">${state.assignments.length}</span>` : ""}</button>`).join("")}</nav><div class="side-note"><strong>Caderno de bordo</strong><p>Um projeto de cada vez.<br>Uma descoberta por dia.</p><button class="text-button" data-nav="classes">Explore suas turmas →</button></div><div class="side-bottom nav"><button data-action="logout">${icon("logout")}Sair do campus</button></div></aside><button class="menu-scrim" data-action="close-menu" aria-label="Fechar menu" tabindex="-1"></button><div class="main"><header class="topbar"><button class="icon-button mobile-menu" data-action="menu" aria-label="Abrir menu" aria-controls="campus-navigation" aria-expanded="false">${icon("menu")}</button><div class="breadcrumb">Seu campus <span>/</span> <strong id="breadcrumb">Visão geral</strong></div><div class="top-actions"><span class="date">${new Date().toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" })}</span><button class="icon-button" data-nav="announcements" aria-label="Ver avisos">${icon("bell")}</button><div class="profile"><div class="avatar">${esc(
       state.user.name
         .split(" ")
         .slice(0, 2)
@@ -185,6 +186,18 @@ function shell() {
     }
   };
 }
+function closeMenu() {
+  $(".sidebar")?.classList.remove("open");
+  const toggle = $(".mobile-menu");
+  toggle?.setAttribute("aria-expanded", "false");
+  toggle?.setAttribute("aria-label", "Abrir menu");
+}
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && $(".sidebar.open")) {
+    closeMenu();
+    $(".mobile-menu")?.focus();
+  }
+});
 async function navigate(page) {
   const token = ++navigation;
   state.page = page;
@@ -198,10 +211,15 @@ async function navigate(page) {
     users: "Pessoas e acessos",
     settings: "Minha conta",
   };
-  $$(".nav [data-nav]").forEach((b) =>
-    b.classList.toggle("active", b.dataset.nav === page),
+  $$(".nav [data-nav]").forEach(
+    (b) => (
+      b.classList.toggle("active", b.dataset.nav === page),
+      b.dataset.nav === page
+        ? b.setAttribute("aria-current", "page")
+        : b.removeAttribute("aria-current")
+    ),
   );
-  $(".sidebar").classList.remove("open");
+  closeMenu();
   $("#breadcrumb").textContent = labels[page] || page;
   $("#content").innerHTML = '<div class="initial">Carregando…</div>';
   try {
@@ -236,7 +254,7 @@ function heading(title, subtitle, action = "") {
   return `<div class="page-heading"><div><h1>${esc(title)}</h1><p class="muted">${esc(subtitle)}</p></div>${action}</div>`;
 }
 function classCard(c) {
-  return `<article class="class-card"><div class="class-art ${esc(c.color)}"><div class="track">CODECAMPUS LAB<span>${c.color === "purple" ? "Build the future." : c.color === "mint" ? "Imagine. Crie." : "Hello, world!"}</span></div><span class="code-symbol" aria-hidden="true">${c.color === "mint" ? "✳" : "{ }"}</span></div><div class="class-body"><span class="tag">${esc(c.age_band)}</span><h3>${esc(c.title)}</h3><p>${esc(c.description)}</p><div class="chips"><span class="muted tiny">${c.modules} módulos</span><span class="muted tiny">· ${c.students} alunos</span></div><div class="class-foot"><span>${esc(c.teacher_name)}</span><button class="text-button" data-action="class" data-id="${c.id}">Acessar turma →</button></div></div></article>`;
+  return `<article class="class-card"><div class="class-art ${esc(c.color)}"><div class="track">CC / ${esc(c.age_band)}<span>${c.color === "purple" ? "Engenharia aplicada" : c.color === "mint" ? "Primeiras descobertas" : c.color === "orange" ? "Ideias em ação" : "Laboratório de código"}</span></div><span class="code-symbol" aria-hidden="true">${c.color === "mint" ? "01" : c.color === "blue" ? "02" : c.color === "orange" ? "↗" : "03"}</span></div><div class="class-body"><span class="tag">${esc(c.age_band)}</span><h3>${esc(c.title)}</h3><p>${esc(c.description)}</p><div class="chips"><span class="muted tiny">${c.modules} módulos</span><span class="muted tiny">· ${c.students} alunos</span></div><div class="class-foot"><span>${esc(c.teacher_name)}</span><button class="text-button" data-action="class" data-id="${c.id}">Acessar turma →</button></div></div></article>`;
 }
 function homePage() {
   const d = state.dashboard,
@@ -247,13 +265,13 @@ function homePage() {
   );
   return (
     heading(
-      `Olá, ${name} 👋`,
+      `Olá, ${name}.`,
       student
         ? "Vamos transformar suas ideias em código?"
         : "Cada descoberta começa com uma boa experiência de aprendizado.",
       `<span class="pill"><span class="status-dot"></span>Campus conectado</span>`,
     ) +
-    `<section class="hero"><div class="hero-copy"><p class="eyebrow">APRENDA. EXPERIMENTE. CONSTRUA.</p><h2>${student ? "Seu próximo capítulo<br>começa com uma ideia." : "Um campus de possibilidades.<br>Um futuro em construção."}</h2><p>Da primeira linha de código aos projetos com inteligência artificial. Sua jornada acontece aqui.</p><button class="button" data-nav="classes">${student ? "Continuar aprendendo" : "Explorar as turmas"} ${icon("arrow")}</button></div>${art()}</section><div class="stats">${[
+    `<section class="hero"><div class="hero-copy"><p class="eyebrow">OFICINA ABERTA / CODECAMPUS</p><h2>${student ? "Aprender é colocar<br>uma ideia em prática." : "Ensinar é abrir espaço<br>para novas descobertas."}</h2><p>Da primeira linha de código aos projetos com inteligência artificial. Sua jornada acontece aqui.</p><button class="button" data-nav="classes">${student ? "Continuar aprendendo" : "Explorar as turmas"} ${icon("arrow")}</button></div>${art()}</section><div class="stats">${[
       [d.classrooms, "Turmas no seu campus", "classes", ""],
       [d.lessons, "Aulas disponíveis", "exams", "mint"],
       [d.assignments, "Projetos para construir", "projects", "orange"],
@@ -289,7 +307,7 @@ function homePage() {
             `<div class="notice"><strong>${esc(a.title)}</strong><p>${esc(a.body.slice(0, 110))}${a.body.length > 110 ? "…" : ""}</p><small>${esc(a.author_name)} · ${date(a.created_at)}</small></div>`,
         )
         .join("") || '<p class="hint">Nenhum aviso por enquanto.</p>'
-    }</section><section class="panel challenge"><p class="eyebrow">PEQUENOS PASSOS, GRANDES IDEIAS</p><h3>O que você vai criar hoje?</h3><p>${student ? `${todo.length} projeto(s) aguardando sua primeira entrega. Compartilhe suas ideias e aprenda com o feedback.` : "Acompanhe as entregas, celebre o progresso e ajude cada aluno a dar seu próximo passo."}</p><button class="text-button" data-nav="projects">Explorar projetos →</button></section></aside></div><footer class="footer"><span>CodeCampus · Aprender construindo</span><span>Curiosidade é o primeiro passo ✦</span></footer>`
+    }</section><section class="panel challenge"><p class="eyebrow">PEQUENOS PASSOS, GRANDES IDEIAS</p><h3>O que você vai criar hoje?</h3><p>${student ? `${todo.length} projeto(s) aguardando sua primeira entrega. Compartilhe suas ideias e aprenda com o feedback.` : "Acompanhe as entregas, celebre o progresso e ajude cada aluno a dar seu próximo passo."}</p><button class="text-button" data-nav="projects">Explorar projetos →</button></section></aside></div><footer class="footer"><span>CodeCampus · Aprender construindo</span><span>Perguntar. Construir. Evoluir.</span></footer>`
   );
 }
 function classesPage() {
@@ -504,8 +522,18 @@ async function uploadFor(classId, lessonId = null, file) {
 }
 async function handleAction(action, id) {
   switch (action) {
-    case "menu":
-      $(".sidebar").classList.toggle("open");
+    case "menu": {
+      const open = $(".sidebar").classList.toggle("open");
+      $(".mobile-menu").setAttribute("aria-expanded", String(open));
+      $(".mobile-menu").setAttribute(
+        "aria-label",
+        open ? "Fechar menu" : "Abrir menu",
+      );
+      break;
+    }
+    case "close-menu":
+      closeMenu();
+      $(".mobile-menu").focus();
       break;
     case "logout":
       await api("/auth/logout", { method: "POST" });
@@ -605,10 +633,10 @@ async function handleAction(action, id) {
             'placeholder="Sábados · 09h às 12h"',
           ) +
           select("Identidade", "color", [
-            ["purple", "Lilás"],
-            ["mint", "Verde"],
-            ["blue", "Azul"],
-            ["orange", "Laranja"],
+            ["purple", "Tinta · Engenharia"],
+            ["mint", "Folha · Exploração"],
+            ["blue", "Planta · Desenvolvimento"],
+            ["orange", "Sinal · Criação"],
           ]),
         (data) => api("/classrooms", { method: "POST", body: data }),
       );

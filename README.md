@@ -13,6 +13,12 @@ cd thiago-alcaras.github.io/projects/CodeCampus
 
 Guia passo a passo: [integração gratuita/local, PostgreSQL, AWS S3 e publicação de uma aula](docs/tutorial-integracao-gratuita.md). O PDF da aula e o kit de exercícios preparados para o professor permanecem privados, fora do Git.
 
+## Identidade visual Oficina
+
+Design system próprio inspirado em cadernos de laboratório: papel quente, tinta escura, verde de oficina e marcadores amarelos. Space Grotesk nos títulos, Source Sans 3 na leitura e IBM Plex Mono nos números e códigos, hospedadas localmente. Componentes, estados e layouts compartilhados entre professores, alunos, responsáveis e administração, incluindo provas e certificados.
+
+[Guia de padrões e tokens](docs/design-system.md). Com a aplicação rodando, explore a galeria interativa em `/static/design-system.html`. Ela usa os componentes reais da plataforma, com exemplos fictícios, e não envia formulários à API.
+
 ## Funcionalidades implementadas
 
 - Administração, professores, alunos e responsáveis, com autorização no servidor e isolamento por turma.
@@ -116,9 +122,12 @@ Teste real no navegador, contra **um novo banco de demonstração**, pois realiz
 npm ci
 npx playwright install chromium
 node tests/e2e.cjs
+node tests/design-system.cjs
 ```
 
 `BASE_URL` muda o servidor; `BROWSER_CHANNEL=msedge` usa Edge instalado. Requer Node 20+. Testa os quatro perfis e larguras 320/390/768/1440. O workflow GitHub Actions está incluído para executar API e navegador em ambientes isolados quando a pasta for a raiz de um repositório. Na publicação dentro do portfólio, ele não é ativado automaticamente: a credencial disponível não tem permissão `workflow`. Docker/PostgreSQL, ClamAV real e AWS precisam de validação no ambiente de destino.
+
+O teste do design system verifica 12 pares de contraste da paleta, fontes locais, abas e diálogo por teclado, menu móvel, ausência de rolagem horizontal no login/galeria e preferência por movimento reduzido. Gera capturas para revisão; não certifica conformidade integral de acessibilidade.
 
 ## Estrutura
 

@@ -6,8 +6,9 @@
   "engines": { "node": ">=20" },
   "scripts": {
     "test:e2e": "node tests/e2e.cjs",
-    "format": "prettier --write apps/web tests/e2e.cjs",
-    "format:check": "prettier --check apps/web tests/e2e.cjs"
+    "test:design": "node tests/design-system.cjs",
+    "format": "prettier --write apps/web tests/*.cjs",
+    "format:check": "prettier --check apps/web tests/*.cjs"
   },
   "devDependencies": {
     "playwright": "1.58.2",

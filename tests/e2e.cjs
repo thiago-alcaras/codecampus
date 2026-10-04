@@ -34,6 +34,7 @@ fs.mkdirSync(output, { recursive: true });
     await page.locator(".page-heading").waitFor();
   }
   await login("student");
+  await page.evaluate(() => document.fonts.ready);
   assert.equal(await page.locator(".class-card").count(), 1);
   await page.screenshot({
     path: output + "/dashboard-desktop.png",

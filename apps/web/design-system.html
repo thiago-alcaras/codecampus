@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#235443" />
+    <title>Oficina · Design system CodeCampus</title>
+    <link rel="icon" href="./favicon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./workshop.css" />
+    <link rel="stylesheet" href="./design-system.css" />
+    <script src="./design-system.js" defer></script>
+  </head>
+  <body class="ds">
+    <a class="skip" href="#content">Pular para o conteúdo</a>
+    <header class="ds-header">
+      <a class="brand" href="/"
+        >CodeCampus <small>OFICINA / SISTEMA VISUAL</small></a
+      ><a class="button secondary" href="/">Ir para o campus ↗</a>
+    </header>
+    <main id="content" class="ds-content">
+      <section class="ds-intro">
+        <p class="eyebrow">CODECAMPUS / OFICINA / V1.0</p>
+        <h1>Uma identidade para<br />quem aprende <em>fazendo.</em></h1>
+        <p>
+          O caderno de laboratório como linguagem: papel, tinta, sinal e espaço
+          para pensar. Componentes reais da plataforma, com padrões
+          compartilhados para alunos e professores.
+        </p>
+        <nav class="ds-index" aria-label="Seções do design system">
+          <a href="#cores">01 Cores</a><a href="#tipo">02 Tipografia</a
+          ><a href="#componentes">03 Componentes</a
+          ><a href="#conteudo">04 Aprendizagem</a
+          ><a href="#estados">05 Estados</a><a href="#regras">06 Regras</a>
+        </nav>
+      </section>
+      <section id="cores" class="ds-section">
+        <p class="eyebrow">01 / PALETA FUNCIONAL</p>
+        <h2>Papel, tinta e sinalização.</h2>
+        <div class="ds-swatches">
+          <article>
+            <div class="swatch paper"></div>
+            <h3>Papel</h3>
+            <code>--paper · #F4F1E9</code>
+            <p>Fundo e respiro.</p>
+          </article>
+          <article>
+            <div class="swatch ink"></div>
+            <h3>Tinta</h3>
+            <code>--ink · #202D2A</code>
+            <p>Texto e estrutura.</p>
+          </article>
+          <article>
+            <div class="swatch action"></div>
+            <h3>Oficina</h3>
+            <code>--action · #235443</code>
+            <p>Ação principal.</p>
+          </article>
+          <article>
+            <div class="swatch accent"></div>
+            <h3>Sinal</h3>
+            <code>--accent · #B43E22</code>
+            <p>Ênfase editorial.</p>
+          </article>
+          <article>
+            <div class="swatch highlight"></div>
+            <h3>Marcador</h3>
+            <code>--highlight · #E6BB4F</code>
+            <p>Destaque com tinta escura.</p>
+          </article>
+          <article>
+            <div class="swatch info"></div>
+            <h3>Planta</h3>
+            <code>--info · #284F76</code>
+            <p>Informação e foco.</p>
+          </article>
+        </div>
+        <div class="chips">
+          <span class="tag mint">Concluído · sucesso</span
+          ><span class="tag orange">Prazo próximo · atenção</span
+          ><span class="tag danger">Falha no envio · erro</span>
+        </div>
+        <p class="hint">
+          Cor sempre acompanhada por texto ou ícone. Laranja editorial e amarelo
+          de destaque não representam erro.
+        </p>
+      </section>
+      <section id="tipo" class="ds-section">
+        <p class="eyebrow">02 / TIPOGRAFIA</p>
+        <div class="ds-two">
+          <article>
+            <h2 class="type-display">
+              O próximo passo<br />é uma boa pergunta.
+            </h2>
+            <p class="eyebrow">SPACE GROTESK / TÍTULOS / 500–600</p>
+            <p>Títulos têm ritmo e personalidade, sem comprometer a leitura.</p>
+          </article>
+          <article>
+            <p class="type-body">
+              Aprender programação é experimentar, conversar sobre o que
+              aconteceu e tentar de novo. A interface dá espaço ao conteúdo e
+              deixa claro o próximo passo.
+            </p>
+            <p class="eyebrow">SOURCE SANS 3 / LEITURA / 400–600</p>
+            <p class="type-mono">
+              CC—LAB / 001<br />const ideia = construir();<br />09:30 → 11:00
+            </p>
+            <p class="eyebrow">IBM PLEX MONO / CÓDIGO E METADADOS</p>
+          </article>
+        </div>
+        <p class="hint">
+          Fontes locais. Texto de leitura: 16 px; apoio: 13–14 px; etiquetas:
+          10–12 px. Altura de linha de 1,5 a 1,8. Etiquetas pequenas nunca
+          carregam instruções essenciais.
+        </p>
+      </section>
+      <section id="componentes" class="ds-section">
+        <p class="eyebrow">03 / INTERAÇÃO</p>
+        <h2>Um vocabulário consistente.</h2>
+        <div class="ds-two">
+          <article class="panel">
+            <h3>Ações</h3>
+            <div class="chips">
+              <button class="button" data-demo="toast">Salvar projeto →</button
+              ><button class="button secondary" data-demo="dialog">
+                Ver detalhes</button
+              ><button class="button danger" data-demo="toast">
+                Excluir rascunho</button
+              ><button class="button" disabled>Salvando…</button>
+            </div>
+            <button class="text-button" data-demo="toast">
+              Voltar para a turma ←
+            </button>
+            <div class="tabs" role="tablist" aria-label="Exemplo de abas">
+              <button
+                id="tab-lesson"
+                class="active"
+                role="tab"
+                aria-selected="true"
+                aria-controls="demo-tab"
+                data-tab="Aulas"
+              >
+                Aulas</button
+              ><button
+                id="tab-project"
+                role="tab"
+                aria-selected="false"
+                aria-controls="demo-tab"
+                tabindex="-1"
+                data-tab="Projetos"
+              >
+                Projetos</button
+              ><button
+                id="tab-material"
+                role="tab"
+                aria-selected="false"
+                aria-controls="demo-tab"
+                tabindex="-1"
+                data-tab="Materiais"
+              >
+                Materiais
+              </button>
+            </div>
+            <p id="demo-tab" role="tabpanel" aria-labelledby="tab-lesson">
+              Aulas: aprenda um conceito e experimente na prática.
+            </p>
+            <p class="hint">Use Tab, setas e Enter para testar a navegação.</p>
+          </article>
+          <article class="panel">
+            <h3>Campos e validação</h3>
+            <form id="demo-form">
+              <label
+                >Nome do projeto<input
+                  name="project"
+                  placeholder="Ex.: Meu primeiro jogo"
+                  required /></label
+              ><label
+                >Turma<select>
+                  <option>Laboratório de código</option>
+                  <option>Primeiras descobertas</option>
+                </select></label
+              ><label
+                >Sobre a sua ideia<textarea
+                  placeholder="O que você quer construir?"
+                ></textarea></label
+              ><label class="check"
+                ><input type="checkbox" />Salvar como rascunho</label
+              ><button class="button" type="submit">Testar formulário</button>
+              <p class="hint">Demonstração local; nenhum dado é enviado.</p>
+            </form>
+          </article>
+        </div>
+      </section>
+      <section id="conteudo" class="ds-section">
+        <p class="eyebrow">04 / APRENDIZAGEM</p>
+        <h2>Trilhas com identidade, conteúdo com prioridade.</h2>
+        <div class="cards">
+          <article class="class-card">
+            <div class="class-art mint">
+              <div class="track">
+                CC / 8–11 ANOS<span>Primeiras descobertas</span>
+              </div>
+              <span class="code-symbol" aria-hidden="true">01</span>
+            </div>
+            <div class="class-body">
+              <span class="tag">Exploração</span>
+              <h3>Do pensamento ao primeiro jogo</h3>
+              <p>
+                Experimente sequências e descubra como uma ideia vira programa.
+              </p>
+              <span class="pill">3 módulos</span>
+            </div>
+          </article>
+          <article class="class-card">
+            <div class="class-art blue">
+              <div class="track">
+                CC / 12–14 ANOS<span>Laboratório de código</span>
+              </div>
+              <span class="code-symbol" aria-hidden="true">02</span>
+            </div>
+            <div class="class-body">
+              <span class="tag">Desenvolvimento</span>
+              <h3>Crie para a web</h3>
+              <p>
+                HTML, CSS e JavaScript com projetos que você pode apresentar.
+              </p>
+              <span class="pill">3 módulos</span>
+            </div>
+          </article>
+          <article class="class-card">
+            <div class="class-art purple">
+              <div class="track">
+                CC / 15–17 ANOS<span>Engenharia aplicada</span>
+              </div>
+              <span class="code-symbol" aria-hidden="true">03</span>
+            </div>
+            <div class="class-body">
+              <span class="tag">Engenharia e IA</span>
+              <h3>Construa em equipe</h3>
+              <p>
+                APIs, dados e inteligência artificial com critérios de
+                qualidade.
+              </p>
+              <span class="pill">8 módulos</span>
+            </div>
+          </article>
+        </div>
+        <section class="module ds-module">
+          <div class="module-heading">
+            <div>
+              <h3>01 / Primeiros algoritmos</h3>
+              <p>Uma sequência de passos para resolver um problema.</p>
+            </div>
+            <span class="tag mint">Em andamento</span>
+          </div>
+          <div class="lesson">
+            <span class="lesson-number">✓</span>
+            <div class="lesson-copy">
+              <strong>Sequências e decisões</strong
+              ><small>25 min · Concluído</small>
+            </div>
+            <button class="button small secondary" data-demo="dialog">
+              Abrir aula
+            </button>
+          </div>
+          <div class="lesson">
+            <span class="lesson-number">02</span>
+            <div class="lesson-copy">
+              <strong>Uma missão com variáveis</strong
+              ><small>30 min · Publicado</small>
+            </div>
+            <button class="button small secondary" data-demo="dialog">
+              Abrir aula
+            </button>
+          </div>
+        </section>
+        <div class="table-wrap">
+          <table>
+            <caption>
+              Entregas fictícias para demonstrar a tabela
+            </caption>
+            <thead>
+              <tr>
+                <th>Projeto</th>
+                <th>Aluno</th>
+                <th>Estado</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Meu primeiro jogo</td>
+                <td>Aluno de exemplo</td>
+                <td><span class="tag mint">Entregue · v2</span></td>
+                <td>
+                  <button class="text-button" data-demo="dialog">
+                    Avaliar →
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section id="estados" class="ds-section">
+        <p class="eyebrow">05 / FEEDBACK</p>
+        <h2>A interface também ensina o próximo passo.</h2>
+        <div class="ds-two">
+          <article class="panel">
+            <label
+              >Campo com erro<input
+                value=""
+                aria-invalid="true"
+                aria-describedby="demo-error"
+            /></label>
+            <p id="demo-error" class="form-error">
+              Dê um nome ao projeto para continuar.
+            </p>
+            <label
+              >Campo indisponível<input
+                value="Turma definida pela escola"
+                disabled
+            /></label>
+            <p class="hint">Explique por que uma ação está indisponível.</p>
+            <div class="exam-warning">
+              A conexão oscilou. Confira se suas respostas foram salvas antes de
+              finalizar.
+            </div>
+            <fieldset class="ds-options">
+              <legend>Alternativas de uma avaliação</legend>
+              <label class="option"
+                ><input type="radio" name="answer" checked />Uma sequência de
+                instruções.</label
+              ><label class="option"
+                ><input type="radio" name="answer" />Uma imagem sem
+                instruções.</label
+              >
+            </fieldset>
+          </article>
+          <article>
+            <div class="empty">
+              Nenhum projeto entregue ainda.<br />Abra um projeto da turma para
+              ver as instruções.
+            </div>
+            <div class="help-box ds-module">
+              <strong>Material disponível</strong>
+              <p>
+                Seu professor publicou um novo roteiro. Encontre o arquivo nos
+                materiais da turma.
+              </p>
+            </div>
+            <p class="hint">
+              Modais usam o diálogo nativo, com foco contido e fechamento por
+              Escape. Mensagens de status são anunciadas por leitores de tela.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section id="regras" class="ds-section">
+        <p class="eyebrow">06 / REGRAS DE COMPOSIÇÃO</p>
+        <h2>Espaço para pensar. Sinal para agir.</h2>
+        <div class="ds-two">
+          <article>
+            <h3>Ritmo</h3>
+            <p>
+              Escala de espaço: 4, 8, 12, 16, 24, 32, 48 e 64 px. Cantos de 3 px
+              para ações, 6 px para blocos e 10 px para diálogos. Bordas finas;
+              sombra curta só quando há necessidade de separação.
+            </p>
+          </article>
+          <article>
+            <h3>Acessibilidade</h3>
+            <p>
+              Foco de teclado explícito, contraste em textos, ações principais
+              com pelo menos 44 px de altura, leitura sem depender da cor e
+              movimento reduzido conforme a preferência do dispositivo.
+            </p>
+          </article>
+        </div>
+        <p class="hint">
+          Sem fotos de alunos, dados reais ou conteúdos privados nesta galeria.
+          Os exemplos são fictícios.
+        </p>
+      </section>
+      <footer class="footer">
+        <span>CodeCampus / Oficina / v1.0</span
+        ><span>Perguntar. Construir. Evoluir.</span>
+      </footer>
+    </main>
+    <dialog id="dialog" aria-labelledby="dialog-title">
+      <div class="dialog-head">
+        <h2 id="dialog-title">Uma boa ideia começa aqui.</h2>
+        <button class="close" aria-label="Fechar">×</button>
+      </div>
+      <p>
+        Este diálogo usa os mesmos componentes das aulas, projetos e formulários
+        do campus.
+      </p>
+      <div class="help-box">
+        Os conteúdos reais continuam privados e disponíveis apenas aos perfis
+        autorizados.
+      </div>
+      <div class="form-actions">
+        <button class="button" id="demo-close">Entendi</button>
+      </div>
+    </dialog>
+    <div id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

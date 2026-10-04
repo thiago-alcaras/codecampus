@@ -350,3 +350,7 @@ Defina prazo real. Aluno → **Projetos → Ver projeto → Entregar projeto**: 
 ## 11. Próximo passo para uma escola em operação
 
 Comece com o teste local professor → upload → aluno → entrega → feedback. Depois conecte PostgreSQL e, se sua conta for elegível, S3. Homologue scanner, restore, concorrência, HTTPS e permissões antes de usar dados reais. Hospedagem contínua, identidade forte, domínio estável e backups precisam de planejamento próprio; este guia não promete uma escola inteira em AWS sem custo permanente.
+
+## Página pública e acesso às aulas
+
+A página inicial `http://127.0.0.1:8000/` apresenta as aulas do CodeCampus. Para entrar com professor, aluno ou administrador, abra `http://127.0.0.1:8000/campus` ou use “Entrar no campus”. APP_ORIGIN continua `http://127.0.0.1:8000`, sem `/campus`.

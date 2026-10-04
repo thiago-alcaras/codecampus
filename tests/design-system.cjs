@@ -17,7 +17,7 @@ fs.mkdirSync("test-results", { recursive: true });
     });
     const errors = [];
     page.on("pageerror", (error) => errors.push(error.message));
-    await page.goto(base);
+    await page.goto(base + "/campus");
     await page.locator("#login-form").waitFor();
     await page.evaluate(() => document.fonts.ready);
     await page.screenshot({

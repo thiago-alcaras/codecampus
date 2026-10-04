@@ -19,7 +19,7 @@ fs.mkdirSync(output, { recursive: true });
   });
   page.on("pageerror", (e) => errors.push(e.message));
   async function login(role) {
-    await page.goto(base);
+    await page.goto(base + "/campus");
     await page
       .getByLabel("E-mail", { exact: true })
       .fill(role + "@demo.codecampus.test");

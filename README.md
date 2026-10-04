@@ -45,7 +45,7 @@ python -m venv .venv
 .venv/Scripts/python -m uvicorn apps.api.main:app --host 127.0.0.1 --port 8000
 ```
 
-Acesse http://127.0.0.1:8000. A demonstração usa SQLite e armazenamento local no diretório **privado e ignorado pelo Git** `data/`. Não execute seed em banco com dados reais.
+Acesse http://127.0.0.1:8000 para a landing page pública das aulas. O acesso à plataforma está em http://127.0.0.1:8000/campus. A demonstração usa SQLite e armazenamento local no diretório **privado e ignorado pelo Git** `data/`. Não execute seed em banco com dados reais.
 
 | Perfil fictício | E-mail | Senha somente da demonstração |
 |---|---|---|
@@ -144,3 +144,7 @@ O frontend usa JavaScript nativo para manter a operação simples e eliminar uma
 ## Estado da entrega
 
 Versão inicial funcional para desenvolvimento e homologação, com os fluxos listados implementados e teste de navegador. A publicação do código no GitHub não hospeda a aplicação dinâmica. Para uso real, configure HTTPS, PostgreSQL com backups, identidade AWS, scanner, política de dados e monitoramento, e valide a infraestrutura de destino. Não há serviço de e-mail, transcodificação de vídeo, pagamentos, SSO/MFA ou executor de código de alunos nesta versão.
+
+## Landing page das aulas
+
+A rota `/` apresenta as trilhas, método, professor, perguntas frequentes e contato por e-mail. `/campus` mantém a aplicação de alunos, professores e responsáveis. A landing usa as fontes e tokens do design system Oficina; não precisa de JavaScript nem build. Conteúdo em `apps/web/landing.html` e estilos em `apps/web/landing.css`. Horários, formato e valores são consultados diretamente com o professor; não há formulário de matrícula ou processamento de pagamento.

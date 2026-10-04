@@ -1308,6 +1308,11 @@ def certificate_document(id: str, user=Depends(principal), db=Depends(db_session
 app.mount("/static", StaticFiles(directory=ROOT / "web"), name="static")
 
 
-@app.get("/")
+@app.get("/", include_in_schema=False)
+def landing():
+    return FileResponse(ROOT / "web" / "landing.html")
+
+
+@app.get("/campus", include_in_schema=False)
 def index():
     return FileResponse(ROOT / "web" / "index.html")

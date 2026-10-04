@@ -1,0 +1,6 @@
+# Optional overlay: PostgreSQL for a Python API running on the host computer.
+# docker compose -f compose.yaml -f compose.host.yaml up -d db
+services:
+  db:
+    ports:
+      - "127.0.0.1:5432:5432"

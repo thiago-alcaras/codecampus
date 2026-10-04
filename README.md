@@ -11,6 +11,8 @@ cd thiago-alcaras.github.io/projects/CodeCampus
 
 ![Dashboard com dados inteiramente fictícios](docs/images/dashboard-desktop.png)
 
+Guia passo a passo: [integração gratuita/local, PostgreSQL, AWS S3 e publicação de uma aula](docs/tutorial-integracao-gratuita.md). O PDF da aula e o kit de exercícios preparados para o professor permanecem privados, fora do Git.
+
 ## Funcionalidades implementadas
 
 - Administração, professores, alunos e responsáveis, com autorização no servidor e isolamento por turma.

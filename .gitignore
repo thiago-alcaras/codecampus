@@ -15,3 +15,5 @@ playwright-report/
 *.pem
 *.key
 backups/
+output/
+tmp/

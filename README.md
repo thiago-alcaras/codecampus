@@ -2,11 +2,11 @@
 
 Um campus para crianças e adolescentes aprenderem programação construindo projetos. Aplicação full stack com interface em português, API FastAPI, SQLAlchemy, PostgreSQL e armazenamento privado AWS S3. Monorepo, sem depender de serviços pagos para rodar a demonstração local.
 
-Código publicado em [projects/CodeCampus no GitHub de Thiago Alcarás](https://github.com/thiago-alcaras/thiago-alcaras.github.io/tree/main/projects/CodeCampus). A credencial atual não permite criar um repositório separado; esta pasta mantém a estrutura completa e pode ser extraída para um repositório próprio.
+Repositório independente: [thiago-alcaras/codecampus](https://github.com/thiago-alcaras/codecampus). Extraído do portfólio com o histórico dos commits do projeto preservado.
 
 ```powershell
-git clone https://github.com/thiago-alcaras/thiago-alcaras.github.io.git
-cd thiago-alcaras.github.io/projects/CodeCampus
+git clone https://github.com/thiago-alcaras/codecampus.git
+cd codecampus
 ```
 
 ![Dashboard com dados inteiramente fictícios](docs/images/dashboard-desktop.png)
@@ -125,7 +125,7 @@ node tests/e2e.cjs
 node tests/design-system.cjs
 ```
 
-`BASE_URL` muda o servidor; `BROWSER_CHANNEL=msedge` usa Edge instalado. Requer Node 20+. Testa os quatro perfis e larguras 320/390/768/1440. O workflow GitHub Actions está incluído para executar API e navegador em ambientes isolados quando a pasta for a raiz de um repositório. Na publicação dentro do portfólio, ele não é ativado automaticamente: a credencial disponível não tem permissão `workflow`. Docker/PostgreSQL, ClamAV real e AWS precisam de validação no ambiente de destino.
+`BASE_URL` muda o servidor; `BROWSER_CHANNEL=msedge` usa Edge instalado. Requer Node 20+. Testa os quatro perfis e larguras 320/390/768/1440. O workflow GitHub Actions está incluído para executar API e navegador em ambientes isolados quando a pasta for a raiz de um repositório. O projeto agora está na raiz do próprio repositório. Docker/PostgreSQL, ClamAV real e AWS precisam de validação no ambiente de destino.
 
 O teste do design system verifica 12 pares de contraste da paleta, fontes locais, abas e diálogo por teclado, menu móvel, ausência de rolagem horizontal no login/galeria e preferência por movimento reduzido. Gera capturas para revisão; não certifica conformidade integral de acessibilidade.
 

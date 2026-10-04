@@ -53,11 +53,11 @@ GitHub hospeda o código; GitHub Pages hospeda seu portfólio estático. Eles n�
 
 Instale Python 3.11+ e Git pelos distribuidores oficiais. Abra PowerShell.
 
-**Nesta máquina o projeto já está em `C:\Repositorios\codecampus`.** Nesse caso, use `cd C:\Repositorios\codecampus` e pule o clone. Em outro computador:
+**Nesta máquina o projeto já está em `C:\Users\thiag\Documents\Github\codecampus`.** Nesse caso, use `cd C:\Users\thiag\Documents\Github\codecampus` e pule o clone. Em outro computador:
 
 ```powershell
-git clone https://github.com/thiago-alcaras/thiago-alcaras.github.io.git
-cd thiago-alcaras.github.io/projects/CodeCampus
+git clone https://github.com/thiago-alcaras/codecampus.git
+cd codecampus
 ```
 
 Se `.venv` ainda não existir:
@@ -294,7 +294,7 @@ Não é necessário abrir as portas do seu roteador para esse teste. Ctrl+C no t
 
 ## 9. Primeira aula: arquivo do professor para os alunos
 
-Foram preparados três materiais locais, privados e fora do Git:
+Os caminhos abaixo são sugestões para materiais que você produzir localmente; esses arquivos não acompanham o repositório:
 
 - `output/pdf/aula-01-javascript-missoes.pdf`: aula de 80 minutos, objetivos, conceitos, desafio e checklist. **Pode enviar aos alunos.**
 - `output/pdf/aula-01-kit-inicial.zip`: HTML/CSS/JavaScript inicial, com TODOs. **Pode enviar aos alunos.**

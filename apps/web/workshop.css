@@ -225,6 +225,9 @@ h3 {
 .hero .button:hover {
   background: #f1ca65;
 }
+.hero :focus-visible {
+  outline-color: var(--surface);
+}
 .hero-art {
   width: 280px;
   height: 182px;
